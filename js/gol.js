@@ -1,6 +1,6 @@
 var fs = require('fs');
 var current = [];
-var next = current;
+var next = [];
 var generation = 0;
 
 function nextGeneration(){
@@ -17,8 +17,9 @@ function nextGeneration(){
             current[x]  [y+1] ? n++ : n;
             current[x+1][y+1] ? n++ : n;
             } catch (e){
-//                console.log(e);
+                console.error(e);
             }
+            next[x] = next[x] || []
             if(current[x][y]){
                 if(n < 2){
                     next[x][y] = 0;
@@ -58,6 +59,7 @@ function read(){
                     });
                 }
             });
+            print();
     });
 }
 
@@ -80,4 +82,4 @@ setInterval(function () {
     nextGeneration();
     print();
     console.log('Generation:' + generation++);
-}, 100);
+}, 200);
